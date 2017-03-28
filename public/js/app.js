@@ -10569,7 +10569,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
   // exchange
   { path: '/exchange', name: 'exchange', component: __WEBPACK_IMPORTED_MODULE_21__views_exchange_Exchange___default.a }, { path: '/exchange/detail', name: 'exchange-detail', component: __WEBPACK_IMPORTED_MODULE_22__views_exchange_Detail___default.a },
   // group buy
-  { path: '/group-buy', name: 'group-buy', component: __WEBPACK_IMPORTED_MODULE_23__views_group_buy_GroupBuy__["default"] }, { path: '/group-buy/detail', name: 'group-buy-detail', component: __WEBPACK_IMPORTED_MODULE_24__views_group_buy_Detail__["default"] },
+  { path: '/group-buy', name: 'group-buy', component: __WEBPACK_IMPORTED_MODULE_23__views_group_buy_GroupBuy___default.a }, { path: '/group-buy/detail', name: 'group-buy-detail', component: __WEBPACK_IMPORTED_MODULE_24__views_group_buy_Detail___default.a },
   // oauth
   { path: '/oauth', name: 'oauth', component: __WEBPACK_IMPORTED_MODULE_25__views_oauth_OAuth___default.a },
   // topic
@@ -12179,15 +12179,71 @@ module.exports = Component.exports
 
 /***/ }),
 /* 55 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'D:\\wwwroot\\ectouch\\ectouch_v1\\resources\\assets\\js\\views\\group-buy\\Detail.vue'\n    at Error (native)");
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(148),
+  /* template */
+  __webpack_require__(80),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\wwwroot\\ectouch\\ectouch_v1\\resources\\assets\\js\\views\\group-buy\\Detail.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Detail.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0e25e036", Component.options)
+  } else {
+    hotAPI.reload("data-v-0e25e036", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 /* 56 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'D:\\wwwroot\\ectouch\\ectouch_v1\\resources\\assets\\js\\views\\group-buy\\GroupBuy.vue'\n    at Error (native)");
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(149),
+  /* template */
+  __webpack_require__(120),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\wwwroot\\ectouch\\ectouch_v1\\resources\\assets\\js\\views\\group-buy\\GroupBuy.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] GroupBuy.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e9cdedca", Component.options)
+  } else {
+    hotAPI.reload("data-v-e9cdedca", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 /* 57 */
@@ -12945,7 +13001,23 @@ if (false) {
 }
 
 /***/ }),
-/* 80 */,
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "group-buy-detail"
+  }, [_c('h1', [_vm._v(_vm._s(_vm.msg))])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0e25e036", module.exports)
+  }
+}
+
+/***/ }),
 /* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13692,7 +13764,23 @@ if (false) {
 }
 
 /***/ }),
-/* 120 */,
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "group-buy"
+  }, [_c('h1', [_vm._v(_vm._s(_vm.msg))])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-e9cdedca", module.exports)
+  }
+}
+
+/***/ }),
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -46252,8 +46340,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 148 */,
-/* 149 */,
+/* 148 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'group-buy-detail',
+  data: function data() {
+    return {
+      msg: 'Welcome to group-buy-detail App'
+    };
+  }
+});
+
+/***/ }),
+/* 149 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'group-buy',
+  data: function data() {
+    return {
+      msg: 'Welcome to group-buy App'
+    };
+  }
+});
+
+/***/ }),
 /* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
