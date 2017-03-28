@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <h2>Essential Links</h2>
+    <router-view></router-view>
   </div>
 </template>
 
