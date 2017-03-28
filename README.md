@@ -44,6 +44,7 @@ http://www.ectouch.cn/download
 2、通过 Git 克隆安装
 
 > git clone https://github.com/ectouch/ectouch
+
 > composer udpate
 
 3、通过 Composer Create-Project
