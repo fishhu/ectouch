@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
+ * to our ECTouch back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
@@ -46,3 +46,10 @@ window.axios.defaults.headers.common = {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+window.$.ajaxSetup({
+    headers: {
+        'X-CSRF-Token': window.Laravel.csrfToken,
+        'X-Requested-With': 'XMLHttpRequest'
+    }
+});
