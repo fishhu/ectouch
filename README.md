@@ -1,71 +1,51 @@
-# ECTouch 产品使用说明
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-## ECTouch简介
+## About Laravel
 
-ECTouch是上海商创网络科技有限公司推出的一款开源免费移动商城网店系统，可以在手机上面卖商品的电子商务软件系统。能够帮助企业和个人快速构建手机移动商城并减少二次开发带来的成本。
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-采用稳定的MVC框架开发，执行效率、扩展性、稳定性值得信赖。MVC是一种将应用程序的逻辑层和表现层进行分离的方法。MVC分层有助于管理复杂的应用程序，因为您可以在一个时间内专门关注一个方面。例如，您可以在不依赖业务逻辑的情况下专注于视图设计。同时也让应用程序的测试更加容易。MVC分层同时也简化了分组开发。不同的开发人员可同时开发视图、控制器逻辑和业务逻辑。
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-最新的国际标准HTML5+CSS3，在HTML5平台上，视频，音频，图象，动画，以及同设备的交互都被标准化，各个平台都正在完善对这一标准的支持，基于HTML5标准的一次开发，可以轻松的部署到各个平台，大大提高开发效率。
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
-## 平台需求
+## Learning Laravel
 
-1、Windows 平台：
-IIS/Apache/Nginx + PHP5.2 + MySQL5.1
+Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
 
-2、Linux/Unix 平台
-Apache/Nginx + PHP5.2 + MySQL5.1 (PHP在非安全模式下运行)
+If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-建议使用平台：Linux + Apache2.2 + PHP5.2/PHP5.3 + MySQL5.1
+## Laravel Sponsors
 
-3、PHP必须环境或启用的系统函数：
-curl
-allow_url_fopen
-GD扩展库
-MySQL扩展库
-系统函数 —— phpinfo、dir
+We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
 
-4、基本目录结构
-* /
-* /admin       默认后台管理目录（可任意改名）
-* /data        静态资源和系统缓存、配置项目录[必须可写入]
-* /include     核心程序目录
-* /plugins     插件程序目录
-* /themes      系统默认模板目录
+- **[Vehikl](http://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Styde](https://styde.net)**
+- **[Codecourse](https://www.codecourse.com)**
+- [Fragrantica](https://www.fragrantica.com)
 
-5、PHP环境容易碰到的不兼容性问题
-* data目录没写入权限，导致管理后台无法上传文件；
-* php的上传的临时文件夹没设置好或没写入权限，这会导致文件上传的功能无法使用；
-* 出现莫名的错误，如安装时显示空白，这样能是由于系统没装载mysql扩展导致的。
-  
-## 程序安装使用
-* 安装并配置好ecshop程序
-* 下载ECTouch程序解压到本地目录
-* 上传程序目录中的/uploads到ecshop网站根目录下，并命名为mobile（原mobile目录重命名）
-* 浏览器中访问http://www.domain.com/mobile/index.php(domain.com表示你的域名)
-* 首次访问会进入安装界面，按照安装提示说明进行程序安装
+## Contributing
 
-## 特色功能
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-* 手机短信验证码功能
-* 支持微信商城对接及微信支付
-* 订单包裹跟踪
-* 手机端第三方登录
-* 整站模块自适应宽度
-* 支持无线支付宝支付
-* 所有数据与ecshop后台无缝对接
+## Security Vulnerabilities
 
-## 社区交流
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-* ECTouch官方主站       http://www.ectouch.cn
-* 技术支持论坛          http://bbs.ecmoban.com
-* 上海商创网络科技      http://www.ecmoban.com
+## License
 
-## 常见问题整理
-
-http://bbs.ecmoban.com/thread-28767-1-1.html
-
-## 功能预览
-
-![image](http://ectouch.cn/data/assets/qrcode.png)
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
