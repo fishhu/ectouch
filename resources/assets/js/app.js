@@ -13,8 +13,12 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+import App from './App.vue'
+import router from './router'
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
+    template: '<App/>',
+    components: {App}
 });
