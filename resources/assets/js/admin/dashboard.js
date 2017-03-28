@@ -13,8 +13,12 @@ require('../bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import App from './Dashboard.vue'
+import App from './Dashboard.vue' // 路由挂载
 import router from './router'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css' // 使用 CSS
+
+Vue.use(iView);
 
 const app = new Vue({
     el: '#app',
