@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         // Model Generator Provider
         if ($this->app->environment() == 'local') {
             $this->app->register('Iber\Generator\ModelGeneratorProvider');
+            $this->app->register('Mpociot\ApiDoc\ApiDocGeneratorServiceProvider');
         }
     }
 }
