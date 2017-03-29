@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ECTouch API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/ectouch/ectouch'>Powered by ECTouch</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>接入准备</h1>
+<h2>概述</h2>
+<p>我们为商家提供的丰富API，涵盖ECTouch各个核心业务流程，基于这些内容可开发各类应用，解决店铺管理、营销推广、数据分析等方面的问题，以实现WAP站点和客户端及单页应用等多种形式的应用接入。如果您是富有企业信息系统开发经验的传统软件厂商，您还可以基于ECTouch API为商家提供包括但不限于BI、ERP、DRP、CRM、SCM 等。</p>
+<p>ECTouch的API是基于HTTP协议来调用的，开发者应用可以根据ECTouch的协议来封装HTTP请求进行调用，以下主要是针对自行封装HTTP请求进行API调用的原理进行详细解说。</p>
+<h1>接入指南</h1>
+<h2>接入流程</h2>
+<p>根据ECTouch的协议：填充参数 &gt; 生成签名 &gt; 拼装HTTP请求 &gt; 发起HTTP请求&gt; 得到HTTP响应 &gt; 解释json/xml结果。</p>
+<h2>公共参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>参数描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>method</td>
+<td>String</td>
+<td>是</td>
+<td>API接口名称。</td>
+</tr>
+<tr>
+<td>app_key</td>
+<td>String</td>
+<td>是</td>
+<td>ECTouch分配给应用的AppId。</td>
+</tr>
+<tr>
+<td>session</td>
+<td>String</td>
+<td>否</td>
+<td>用户登录成功后的授权信息。当此API的标签上注明：&quot;需要授权&quot;，则此参数必传；&quot;不需要授权&quot;，则此参数不需要传；&quot;可选授权&quot;，则此参数为可选。</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>String</td>
+<td>是</td>
+<td>时间戳，格式为yyyy-MM-dd HH:mm:ss，时区为GMT+8，例如：2016-01-01 12:00:00。服务端允许客户端请求最大时间误差为10分钟。</td>
+</tr>
+<tr>
+<td>format</td>
+<td>String</td>
+<td>否</td>
+<td>响应格式。默认为xml格式，可选值：xml，json。</td>
+</tr>
+<tr>
+<td>v</td>
+<td>String</td>
+<td>是</td>
+<td>API协议版本，可选值：1.0。</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>String</td>
+<td>是</td>
+<td>API输入参数签名结果，签名算法参照下面的介绍。</td>
+</tr>
+<tr>
+<td>sign_method</td>
+<td>String</td>
+<td>是</td>
+<td>签名的摘要算法，可选值为：md5。</td>
+</tr>
+</tbody>
+</table>
+<h2>业务参数</h2>
+<p>API调用除了必须包含公共参数外，如果API本身有业务级的参数也必须传入，每个API的业务级参数请参见各个 API 内的参数说明。</p>
+<h2>签名算法</h2>
+<p>为了防止API调用过程中被黑客恶意篡改，调用任何一个API都需要携带签名，服务端会根据请求参数，对签名进行验证，签名不合法的请求将会被拒绝。目前支持的签名算法有：MD5(sign_method=md5)，签名大体过程如下：</p>
+<p>对所有API请求参数（包括公共参数和业务参数，但除去sign参数和byte[]类型的参数），根据参数名称的ASCII码表的顺序排序。如：foo=1, bar=2, foo_bar=3, foobar=4排序后的顺序是bar=2, foo=1, foo_bar=3, foobar=4。
+将排序好的参数名和参数值拼装在一起，根据上面的示例得到的结果为：bar2foo1foo_bar3foobar4。
+把拼装好的字符串采用utf-8编码，使用签名算法对编码后的字节流进行摘要。如果使用MD5算法，则需要在拼装的字符串前后加上app的secret后，再进行摘要，如：md5(secret+bar2foo1foo_bar3foobar4+secret)；
+说明：MD5是128位长度的摘要算法，用16进制表示，一个十六进制的字符能表示4个位，所以签名后的字符串长度固定为32个十六进制字符。</p>
+<h2>调用示例</h2>
+<p>下面将以ectouch.item.get调用为例，具体步骤如下：</p>
+<h4>Step 1: 设置参数值</h4>
+<p>公共参数：</p>
+<pre><code>method = "ectouch.item.get"
+app_key = "12345678"
+session = "test"
+timestamp = "2016-01-01 12:00:00"
+format = "json"
+v = "1.0"
+sign_method = "md5"</code></pre>
+<p>业务参数：</p>
+<pre><code>goods_id = 11223344</code></pre>
+<h4>Step 2: 按ASCII顺序排序</h4>
+<pre><code>app_key = "12345678"
+format = "json"
+goods_id = 11223344
+method = "ectouch.item.get"
+session = "test"
+sign_method = "md5"
+timestamp = "2016-01-01 12:00:00"
+v = "1.0"</code></pre>
+<h4>Step 3: 拼接参数名与参数值</h4>
+<pre><code>app_key12345678formatjsongoods_id11223344methodectouch.item.getsessiontestsign_methodmd5timestamp2016-01-01 12:00:00v1.0</code></pre>
+<h4>Step 4: 生成签名</h4>
+<p>假设app的secret为helloworld，则签名结果为：md5(helloworld+按顺序拼接好的参数名与参数值+helloworld) = &quot;D1F578E6E6EE4E7B85D3B94970328EEC&quot;</p>
+<h4>Step 5: 组装HTTP请求</h4>
+<p>将所有参数名和参数值采用utf-8进行URL编码（参数顺序可随意，但必须要包括签名参数），然后通过GET或POST（含byte[]类型参数）发起请求，如：</p>
+<pre><code>http://api.ectouch.cn/?method=ectouch.item.get&amp;app_key=12345678&amp;session=test&amp;timestamp=2016-01-01+12%3A00%3A00&amp;format=json&amp;v=1.0&amp;sign_method=md5&amp;goods_id=11223344&amp;sign=D1F578E6E6EE4E7B85D3B94970328EEC</code></pre>
+<p><a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>商品</h1>
+<p>Longer 商品Api接口</p>
+<!-- START_29e7f8ae229e20626a6459e2e8049028 -->
+<h2>获得商品详情</h2>
+<p>This can be an optional longer description of your API call, used within the documentation.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://localhost/api/v2/ectouch.item.get" \
+-H "Accept: application/json" \
+    -d "title"="quae" \
+    -d "body"="quae" \
+    -d "type"="foo" \
+    -d "thumbnail"="quae" \
+</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v2/ectouch.item.get",
+    "method": "GET",
+    "data": {
+        "title": "quae",
+        "body": "quae",
+        "type": "foo",
+        "thumbnail": "quae"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v2/ectouch.item.get</code></p>
+<p><code>HEAD api/v2/ectouch.item.get</code></p>
+<h4>Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>required</td>
+<td>Maximum: <code>255</code></td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>optional</td>
+<td><code>foo</code> or <code>bar</code></td>
+</tr>
+<tr>
+<td>thumbnail</td>
+<td>image</td>
+<td>optional</td>
+<td>Required if <code>type</code> is <code>foo</code> Must be an image (jpeg, png, bmp, gif, or svg)</td>
+</tr>
+</tbody>
+</table>
+<!-- END_29e7f8ae229e20626a6459e2e8049028 -->
+<!-- START_INFO -->
+<h1>帮助文档</h1>
+<p>xx</p>
+<h2>工具使用说明</h2>
+<p>bb</p>
+<h2>异常排查及错误码</h2>
+<p>bb</p>
+<h2>更新日志</h2>
+<p>dd</p>
+<h1>常见问题</h1>
+<p>x</p>
+<h2>名词解释</h2>
+<p>x</p>
+<h2>API相关问题</h2>
+<p>x</p>
+<!-- END_INFO -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>

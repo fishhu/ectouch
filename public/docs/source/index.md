@@ -1,0 +1,207 @@
+---
+title: ECTouch API Reference
+
+language_tabs:
+- bash
+- javascript
+
+includes:
+
+search: true
+
+toc_footers:
+- <a href='http://github.com/ectouch/ectouch'>Powered by ECTouch</a>
+---
+<!-- START_INFO -->
+# 接入准备
+
+## 概述
+
+我们为商家提供的丰富API，涵盖ECTouch各个核心业务流程，基于这些内容可开发各类应用，解决店铺管理、营销推广、数据分析等方面的问题，以实现WAP站点和客户端及单页应用等多种形式的应用接入。如果您是富有企业信息系统开发经验的传统软件厂商，您还可以基于ECTouch API为商家提供包括但不限于BI、ERP、DRP、CRM、SCM 等。
+
+ECTouch的API是基于HTTP协议来调用的，开发者应用可以根据ECTouch的协议来封装HTTP请求进行调用，以下主要是针对自行封装HTTP请求进行API调用的原理进行详细解说。
+
+# 接入指南
+
+## 接入流程
+
+根据ECTouch的协议：填充参数 > 生成签名 > 拼装HTTP请求 > 发起HTTP请求> 得到HTTP响应 > 解释json/xml结果。
+
+## 公共参数
+
+| 参数名称 | 参数类型 | 是否必须 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| method | String | 是 | API接口名称。 |
+| app_key | String | 是 | ECTouch分配给应用的AppId。 |
+| session | String | 否 | 用户登录成功后的授权信息。当此API的标签上注明："需要授权"，则此参数必传；"不需要授权"，则此参数不需要传；"可选授权"，则此参数为可选。 |
+| timestamp | String | 是 | 时间戳，格式为yyyy-MM-dd HH:mm:ss，时区为GMT+8，例如：2016-01-01 12:00:00。服务端允许客户端请求最大时间误差为10分钟。 |
+| format | String | 否 | 响应格式。默认为xml格式，可选值：xml，json。 |
+| v | String | 是 | API协议版本，可选值：1.0。 |
+| sign | String | 是 | API输入参数签名结果，签名算法参照下面的介绍。 |
+| sign_method | String | 是 | 签名的摘要算法，可选值为：md5。 |
+
+## 业务参数
+
+API调用除了必须包含公共参数外，如果API本身有业务级的参数也必须传入，每个API的业务级参数请参见各个 API 内的参数说明。
+
+## 签名算法
+
+为了防止API调用过程中被黑客恶意篡改，调用任何一个API都需要携带签名，服务端会根据请求参数，对签名进行验证，签名不合法的请求将会被拒绝。目前支持的签名算法有：MD5(sign_method=md5)，签名大体过程如下：
+
+对所有API请求参数（包括公共参数和业务参数，但除去sign参数和byte[]类型的参数），根据参数名称的ASCII码表的顺序排序。如：foo=1, bar=2, foo_bar=3, foobar=4排序后的顺序是bar=2, foo=1, foo_bar=3, foobar=4。
+将排序好的参数名和参数值拼装在一起，根据上面的示例得到的结果为：bar2foo1foo_bar3foobar4。
+把拼装好的字符串采用utf-8编码，使用签名算法对编码后的字节流进行摘要。如果使用MD5算法，则需要在拼装的字符串前后加上app的secret后，再进行摘要，如：md5(secret+bar2foo1foo_bar3foobar4+secret)；
+说明：MD5是128位长度的摘要算法，用16进制表示，一个十六进制的字符能表示4个位，所以签名后的字符串长度固定为32个十六进制字符。
+
+## 调用示例
+
+下面将以ectouch.item.get调用为例，具体步骤如下：
+
+#### Step 1: 设置参数值
+
+公共参数：
+```
+method = "ectouch.item.get"
+app_key = "12345678"
+session = "test"
+timestamp = "2016-01-01 12:00:00"
+format = "json"
+v = "1.0"
+sign_method = "md5"
+```
+
+业务参数：
+```
+goods_id = 11223344
+```
+
+
+#### Step 2: 按ASCII顺序排序
+
+```
+app_key = "12345678"
+format = "json"
+goods_id = 11223344
+method = "ectouch.item.get"
+session = "test"
+sign_method = "md5"
+timestamp = "2016-01-01 12:00:00"
+v = "1.0"
+```
+
+#### Step 3: 拼接参数名与参数值
+
+```
+app_key12345678formatjsongoods_id11223344methodectouch.item.getsessiontestsign_methodmd5timestamp2016-01-01 12:00:00v1.0
+```
+
+#### Step 4: 生成签名
+
+假设app的secret为helloworld，则签名结果为：md5(helloworld+按顺序拼接好的参数名与参数值+helloworld) = "D1F578E6E6EE4E7B85D3B94970328EEC"
+
+#### Step 5: 组装HTTP请求
+
+将所有参数名和参数值采用utf-8进行URL编码（参数顺序可随意，但必须要包括签名参数），然后通过GET或POST（含byte[]类型参数）发起请求，如：
+
+```
+http://api.ectouch.cn/?method=ectouch.item.get&app_key=12345678&session=test&timestamp=2016-01-01+12%3A00%3A00&format=json&v=1.0&sign_method=md5&goods_id=11223344&sign=D1F578E6E6EE4E7B85D3B94970328EEC
+```
+
+[Get Postman Collection](http://localhost/docs/collection.json)
+
+<!-- END_INFO -->
+
+#商品
+
+Longer 商品Api接口
+<!-- START_29e7f8ae229e20626a6459e2e8049028 -->
+## 获得商品详情
+
+This can be an optional longer description of your API call, used within the documentation.
+
+> Example request:
+
+```bash
+curl -X GET "http://localhost/api/v2/ectouch.item.get" \
+-H "Accept: application/json" \
+    -d "title"="quae" \
+    -d "body"="quae" \
+    -d "type"="foo" \
+    -d "thumbnail"="quae" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/v2/ectouch.item.get",
+    "method": "GET",
+    "data": {
+        "title": "quae",
+        "body": "quae",
+        "type": "foo",
+        "thumbnail": "quae"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/v2/ectouch.item.get`
+
+`HEAD api/v2/ectouch.item.get`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    title | string |  required  | Maximum: `255`
+    body | string |  required  | 
+    type | string |  optional  | `foo` or `bar`
+    thumbnail | image |  optional  | Required if `type` is `foo` Must be an image (jpeg, png, bmp, gif, or svg)
+
+<!-- END_29e7f8ae229e20626a6459e2e8049028 -->
+
+<!-- START_INFO -->
+# 帮助文档
+
+xx
+
+## 工具使用说明
+
+bb
+
+## 异常排查及错误码
+
+bb
+
+## 更新日志
+
+dd
+
+# 常见问题
+
+x
+
+## 名词解释
+
+x
+
+## API相关问题
+
+x
+
+<!-- END_INFO -->
