@@ -20,6 +20,14 @@ ECTouch 是一款开源免费的商城系统，为中小企业提供最佳的移
 - 多种渠道支付接口
 - 数据与ecshop无缝对接
 
+### 架构&特性
+
+- 服务端采用 Laravel 框架，运用api机制来实现跨产品和跨终端产品的研发和发布。
+- 客户端采用 Vue.js 进行产品需求研发。
+- 服务端采用 composer 安装依赖，配置文件 composer.json
+- 客户端资源依赖 nodejs 环境，配置文件package.json
+- 资源打包工具采用 webpack，配置文件 webpack.mix.js
+
 ## 服务器要求
 
 ECTouch 会有一些系统上的要求。当然，这些要求在主流虚拟机上都已经完全配置好了。
