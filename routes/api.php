@@ -19,20 +19,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v2', 'namespace' => 'Api'], function () {
     // API
-    Route::get('/', 'ApiController@index');
+    Route::get('/', function () {
+        return 'I\'m ready.';
+    });
     // 商品
     Route::get('/ectouch.item.get', 'GoodsController@show'); // 获取单个商品信息
     Route::post('/ectouch.item.add', 'GoodsController@store'); // 新增一个商品
     Route::post('/ectouch.item.update', 'GoodsController@update'); // 更新单个商品信息
     Route::post('/ectouch.item.delete', 'GoodsController@destroy'); // 删除一个商品
     Route::get('/ectouch.item.sku.get', 'GoodsSkuController@show'); // 获取单个商品SKU
-    Route::post('/ectouch.item.sku.update', 'GoodsSkuController@update'); // 更新单个商品SKU
-    Route::post('/ectouch.item.sku.delete', 'GoodsSkuController@destroy'); // 更新单个商品SKU
+    Route::post('/ectouch.item.sku.update', 'ProductController@update'); // 更新单个商品SKU
+    Route::post('/ectouch.item.sku.delete', 'ProductController@destroy'); // 更新单个商品SKU
     Route::get('/ectouch.items.get', 'GoodsController@index'); // 获取商品列表
     // 类目
     Route::get('/ectouch.category.get', 'CategoryController@show'); // 获取单个分类信息
-    Route::get('/ectouch.categories.get', 'CategoriesController@index'); // 获取分类列表
-    Route::get('/ectouch.brand.category.get', 'BrandCategoryController@index'); // 获取品牌分类
+    Route::get('/ectouch.categories.get', 'CategoryController@index'); // 获取分类列表
+    Route::get('/ectouch.brand.category.get', 'BrandController@category'); // 获取品牌分类
     Route::get('/ectouch.brand.get', 'BrandController@show'); // 获取单个品牌信息
     Route::get('/ectouch.brands.get', 'BrandsController@index'); // 获取品牌列表
     // 交易
@@ -156,5 +158,5 @@ Route::group(['prefix' => 'v2', 'namespace' => 'Api'], function () {
     Route::get('/ectouch.tool.region', 'MiscController@region'); // 地区
     Route::get('/ectouch.tool.chat', 'MiscController@chat'); // 在线客服
     Route::post('/ectouch.tool.sms', 'MiscController@sms'); // 短信发送
-    Route::get('/ectouch.search.keywords', 'SearchController@keywords'); // 搜索关键词
+    Route::get('/ectouch.search.keywords', 'SearchController@index'); // 搜索关键词
 });
