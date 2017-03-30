@@ -27,7 +27,7 @@ Route::group(['prefix' => 'v2', 'namespace' => 'Api'], function () {
     Route::post('/ectouch.item.add', 'GoodsController@store'); // 新增一个商品
     Route::post('/ectouch.item.update', 'GoodsController@update'); // 更新单个商品信息
     Route::post('/ectouch.item.delete', 'GoodsController@destroy'); // 删除一个商品
-    Route::get('/ectouch.item.sku.get', 'GoodsSkuController@show'); // 获取单个商品SKU
+    Route::get('/ectouch.item.sku.get', 'ProductController@show'); // 获取单个商品SKU
     Route::post('/ectouch.item.sku.update', 'ProductController@update'); // 更新单个商品SKU
     Route::post('/ectouch.item.sku.delete', 'ProductController@destroy'); // 更新单个商品SKU
     Route::get('/ectouch.items.get', 'GoodsController@index'); // 获取商品列表
