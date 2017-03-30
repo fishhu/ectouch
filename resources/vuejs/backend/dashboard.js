@@ -13,7 +13,6 @@ require('../../assets/js/bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import Vue from 'vue'
 import * as global from './directives/global'
 import seamlessScroll from './directives/seamlessScroll'
 
@@ -45,14 +44,19 @@ Vue.prototype.url = function (module) {
   return window.ROOT_URL + 'index.php?m=' + module;
 }
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+
 import App from './App'
 import router from './router'
 import store from './store'
+
+Vue.use(ElementUI)
 
 const app = new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
-  components: {App}
+  components: { App }
 })

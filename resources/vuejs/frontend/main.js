@@ -13,8 +13,13 @@ require('../../assets/js/bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
 import App from './App'
 import router from './router'
+
+Vue.use(MintUI)
 
 Vue.config.productionTip = false
 
