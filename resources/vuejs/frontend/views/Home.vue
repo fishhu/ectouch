@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home mb-7">
       <header>
         <div id="mod-search" class="vue-model mod-search">
             <header class="search search-fixed">
@@ -10,10 +10,11 @@
                       <i class="iconfont icon-down-arrow"></i></span>
                   </div>
                 </a>
-                <a class="search-center" href="">
+                <router-link :to="{path:'/search'}" class="search-center">
                   <div>
-                    <i class="iconfont icon-search"></i>商品/店铺搜索</div>
-                </a>
+                     <i class="iconfont icon-search"></i>商品/店铺搜索
+                  </div>
+                </router-link>
                 <a href="" style="color: rgb(255, 255, 255);">
                   <div class="search-right">
                     <em></em>
@@ -27,7 +28,7 @@
         </div>
       </header>
       <div class="vue-model">
-            <div class="swiper-container picture picture-del swiper-container-horizontal">
+            <div class="swiper-container picture picture-del banner-first swiper-container-horizontal">
               <div class="swiper-wrapper" style="transform: translate3d(-1125px, 0px, 0px); transition-duration: 0ms;">
                 <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="2" style="width: 375px;">
                   <a href=""></a>
@@ -70,11 +71,7 @@
                   <div class="swiper-lazy-preloader" style="display: none;"></div>
                 </div>
               </div>
-              <div class="swiper-pagination picturePagination swiper-pagination-bullets">
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet"></span>
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-              </div>
+              <div class="swiper-pagination br-half text-c banner-first-pagination swiper-pagination-clickable"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span></div>
             </div>
           <!---->
       </div>
@@ -130,7 +127,7 @@
         <div class="announ-left">
           <img src="../assets/images/static/new-icon.png" alt=""></div>
         <div class="announ-center">
-          <div class="swiper-container announ-del swiper-container-vertical">
+          <div class="swiper-container index-new-list announ-del swiper-container-vertical">
             <div class="swiper-wrapper" style="transform: translate3d(0px, -72px, 0px); transition-duration: 0ms;">
               <div class="swiper-slide swiper-no-swiping swiper-slide-duplicate" data-swiper-slide-index="3" style="height: 36px;">
                 <a href="">
@@ -197,7 +194,7 @@
             <a href=""></a>更多
             <i class="iconfont icon-right-arrow"></i></div>
         </header>
-        <div class="swiper-container spike-swiper swiper-container-horizontal swiper-container-free-mode">
+        <div class="swiper-container spike-swiper hot-container swiper-container-horizontal swiper-container-free-mode">
           <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
             <div class="swiper-slide swiper-slide-active" style="width: 104.167px;">
               <a href="" class="link"></a>
@@ -278,7 +275,7 @@
         </div>
       </section>
       <section>
-          <div class="swiper-container picture picture-del swiper-container-horizontal">
+          <div class="swiper-container picture picture-del banner-second swiper-container-horizontal">
               <div class="swiper-wrapper" style="transform: translate3d(-750px, 0px, 0px); transition-duration: 0ms;">
                 <div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="0" style="width: 375px;">
                   <a href=""></a>
@@ -304,9 +301,6 @@
                   </figure>
                   <div class="swiper-lazy-preloader" style="display: none;"></div>
                 </div>
-              </div>
-              <div class="swiper-pagination picturePagination swiper-pagination-bullets">
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
               </div>
             </div>
       </section>
@@ -383,7 +377,7 @@
           </div>
       </section>
       <section>
-          <div class="swiper-container picture picture-del swiper-container-horizontal">
+          <div class="swiper-container picture picture-del banner-third swiper-container-horizontal">
             <div class="swiper-wrapper" style="transform: translate3d(-750px, 0px, 0px); transition-duration: 0ms;">
               <div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="0" style="width: 375px;">
                 <a href=""></a>
@@ -409,9 +403,6 @@
                 </figure>
                 <div class="swiper-lazy-preloader" style="display: none;"></div>
               </div>
-            </div>
-            <div class="swiper-pagination picturePagination swiper-pagination-bullets">
-              <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
             </div>
           </div>
       </section>
@@ -506,6 +497,8 @@
 </template>
 
 <script>
+import $ from "../assets/js/jquery.min.js"
+    import swiper from "../assets/js/swiper-3.2.5.min.js";
   export default {
     name: 'home',
     data () {
@@ -514,6 +507,58 @@
       }
     }
   }
+  
+    $(function($) {
+      /*立即关注*/
+      if ($(".ect-header-banner").hasClass("ect-header-banner")) {
+          $(".new-index-banner").css({"paddingTop": "5rem",})
+      } else {
+          $(".new-index-banner").css({"paddingTop": "0rem",})
+      }
+      var swiper = new Swiper('.index-new-list', {
+          pagination: '.swiper-pagination',
+          paginationClickable: true,
+          direction: 'vertical',
+          loop: true,
+          grabCursor: true,
+          autoplayDisableOnInteraction: false,
+          autoplay: 4000,
+          speed: 700,
+          freeMode: true,
+          noSwiping : true,
+        });
+        var mySwiper = new Swiper('.banner-first', {
+            autoplay: 4000,
+            loop: true,
+            pagination: '.banner-first-pagination'
+        });
+        var mySwiper = new Swiper('.banner-second', {
+            autoplay: 5000,
+            pagination: '.banner-second-pagination'
+        });
+        var mySwiper = new Swiper('.banner-third', {
+            autoplay: 5000,
+            pagination: '.banner-third-pagination'
+        });
+        var mySwiper = new Swiper('.recom-container', {
+            pagination: '.recom-pagination',
+            slidesPerView: 1,
+            paginationClickable: true
+        });
+        var mySwiper = new Swiper('.brand-container', {
+            pagination: '.brand-pagination',
+            slidesPerView: 1,
+            paginationClickable: true
+        });
+        var mySwiper = new Swiper('.hot-container', {
+            slidesPerView: 4,
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev'
+        });
+    });
+  
+
 </script>
 <style>
 * {
@@ -656,7 +701,9 @@ a {
         pointer-events: none;
     }
 }
-
+a:active, a:hover, a:link, a:visited {
+    text-decoration: none;
+}
 code,
 kbd,
 pre,
@@ -666,6 +713,10 @@ samp {
 i,em{font-style:normal;}
 
 
+
+.mb-7 {
+    margin-bottom: 5.2rem;
+}
 .home .search{padding:0;}
 body{font-size:14px !important;}
 .div-component {
@@ -747,6 +798,9 @@ header.search-fixed .search-center, header.search-visual .search-center {
 }
 .mod-search .search-center i.icon-search {
     margin-right: .4rem;
+}
+.mod-search .search-center {
+    color: #fff !important;
 }
 .mod-search .search-right {
     padding: 0 0 0 1rem;
@@ -1105,6 +1159,7 @@ figure {
 }
 .product-list {
     padding: .05rem;
+    overflow:hidden;
 }
 .product-list ul li {
     width: 50%;
@@ -1153,7 +1208,8 @@ h4{
 }
 .product-list figure h4 {
     font-size: 1.5rem;
-    height:3.6rem;
+    height:3.8rem;
+    line-height:1.9rem;
     word-break: break-all;
     overflow: hidden;
     text-overflow:ellipsis;
@@ -1200,5 +1256,23 @@ figure {
     transition-property: transform;
     box-sizing: content-box;
 }
+.swiper-pagination-bullet {
+    width: .7rem;
+    height: .7rem;
+    border-radius: 100%;
+    background: #fff;
+    opacity: .8;
+}
+.swiper-pagination-bullet-active {
+    background: #ec5151;
+    opacity: 1;
+}
+.swiper-pagination-clickable .swiper-pagination-bullet {
+    cursor: pointer;
+}
+.swiper-container-horizontal>.swiper-pagination .swiper-pagination-bullet {
+    margin: 0 5px;
+}
+
 </style>
 

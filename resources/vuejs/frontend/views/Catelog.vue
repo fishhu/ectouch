@@ -6,8 +6,9 @@
                     <section class="search category-search">
                         <div class="text-all dis-box j-text-all text-all-back">
                             <div class="box-flex input-text n-input-text i-search-input">
-                                <a class="a-search-input" href=""></a>
-                                <div class="j-input-text nav-soso"><i class="iconfont icon-sousuo"></i>商品/店铺搜索</div>
+                                <router-link :to="{path:'/search'}">
+                                   <div class="j-input-text nav-soso"><i class="iconfont icon-sousuo"></i>商品/店铺搜索</div>
+                                </router-link>
                             </div>
                         </div>
                     </section>
@@ -21,6 +22,17 @@
                                         <li class="active">家用电器</li>
                                         <li>手机数码</li>
                                         <li>电脑办公</li>
+                                        <li>家居家纺</li>
+                                        <li>男装女装</li>
+                                        <li>鞋靴箱包</li>
+                                        <li>个人化妆</li>
+                                        <li>母婴玩具</li>
+                                        <li>图书音像</li>
+                                        <li>休闲运动</li>
+                                        <li>腕表珠宝</li>
+                                        <li>汽车汽配</li>
+                                        <li>食品酒水</li>
+                                        <li>保健器械</li>
                                     </ul>
                                 </div>
                             </div>
@@ -43,6 +55,14 @@
                             <li class="w-3"><a href=""></a><img src="../assets/images/static/category4.jpg" alt="电风扇"><span>电风扇</span></li>
                             <li class="w-3"><a href=""></a><img src="../assets/images/static/category5.jpg" alt="冷风扇"><span>冷风扇</span></li>
                             <li class="w-3"><a href=""></a><img src="../assets/images/static/category6.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
+                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
                         </ul>
                     </ul>
                     <script id="category" type="text/html">
@@ -77,6 +97,8 @@
 </template>
 
 <script>
+  import $ from "../assets/js/jquery.min.js";
+  import VueAwesomeSwiper from 'vue-awesome-swiper'
   export default {
     name: 'catelog',
     data () {
@@ -85,6 +107,59 @@
       }
     }
   }
+
+
+
+$(function(){
+    var cat_id = 0;
+   // ajaxAction($("#sidebar li:first"), $("#sidebar li:first").attr("data"), $("#sidebar //li:first").attr("data-id"));
+    $("#sidebar li").click(function(){
+        var li = $(this);
+        var url = $(this).attr("data");
+        var id = $(this).attr("data-id");
+        ajaxAction(li, url, id);
+    });
+    function ajaxAction(obj, url, id){
+        if(cat_id != id){
+            $.ajax({
+                type: 'get',
+                url: url,
+                data: '',
+                cache: true,
+                async: false,
+                dataType: 'json',
+                beforeSend: function(){
+                    $(".loading").show();
+                },
+                success: function(result){
+                    if(typeof(result.code) == 'undefined'){
+                        $(".child_category").animate({
+                            scrollTop: 0
+                        }, 0);
+                        template.config('openTag', '<%');
+                        template.config('closeTag', '%>');
+                        var html = template('category', result);
+                        $(".child_category").html(html);
+                        //$(".child_category ul").html(result);
+                        obj.addClass("active").siblings("li").removeClass("active");
+                    }
+                    else{
+                        d_messages(result.message);
+                    }
+                },
+                complete: function(){
+                    $(".loading").hide();
+                }
+            });
+            cat_id = id;
+        }
+    }
+    $(".swiper-slide.swiper-slide-active li").click(function(){
+       $(this).addClass('active').siblings().removeClass('active')
+    })
+})
+
+
 </script>
 <style>
 .con, body, html {
@@ -304,7 +379,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     text-align: center;
 }
 .w-3:nth-child(3n+1) {
-    padding-left: 0;
     padding-right: .6rem;
 }
 .menu-right ul li a {
@@ -399,6 +473,45 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 .footer-nav .nav-list.active span{
   color:#ec5151;
+}
+
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    -ms-transition-property: -ms-transform;
+    transition-property: transform;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+.swiper-container-vertical>.swiper-wrapper {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.swiper-container-free-mode>.swiper-wrapper {
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -ms-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    margin: 0 auto;
+}
+.s-g-attr-con .swiper-wrapper, .goods-big-service .swiper-wrapper, .s-g-list-con .swiper-wrapper, .goods-show-con .swiper-wrapper, .menu-left .swiper-wrapper {
+    display: block;
 }
 </style>
 
