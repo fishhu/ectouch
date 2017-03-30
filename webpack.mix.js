@@ -13,4 +13,5 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
-   .js('resources/assets/js/admin/dashboard.js', 'public/js');
+   .js('resources/vuejs/frontend/main.js', 'public/js')
+   .js('resources/vuejs/backend/dashboard.js', 'public/js');
