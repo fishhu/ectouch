@@ -46,6 +46,7 @@ import Login from '../views/user/auth/Login'
 import Forgot from '../views/user/auth/Forgot'
 import Reset from '../views/user/auth/Reset'
 // user center
+import User from '../views/user/User'
 import Account from '../views/user/account/Account'
 import Address from '../views/user/address/Address'
 import Affiliate from '../views/user/affiliate/Affiliate'
@@ -57,6 +58,7 @@ import Order from '../views/user/order/Order'
 import OrderDetail from '../views/user/order/Detail'
 import Profile from '../views/user/profile/Profile'
 import Refound from '../views/user/refound/Refound'
+import RefoundDetail from '../views/user/refound/Detail'
 
 Vue.use(Router)
 
@@ -107,6 +109,7 @@ export default new Router({
     {path: '/forgot', name: 'forgot', component: Forgot},
     {path: '/reset', name: 'reset', component: Reset},
     // user center
+    {path: '/user', name: 'user', component: User},
     {path: '/user/account', name: 'user-account', component: Account},
     {path: '/user/address', name: 'user-address', component: Address},
     {path: '/user/affiliate', name: 'user-affiliate', component: Affiliate},
