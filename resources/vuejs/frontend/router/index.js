@@ -123,7 +123,7 @@ const router = new Router({
     {path: '/user/order', name: 'user-order-detail', component: OrderDetail, meta: {title: '订单详情'}},
     {path: '/user/profile', name: 'user-profile', component: Profile, meta: {title: '账号管理'}},
     {path: '/user/refound', name: 'user-refound', component: Refound, meta: {title: '退货/售后'}},
-    {path: '/user/refound/detail', name: 'user-refound', component: RefoundDetail, meta: {title: '退货/售后'}}
+    {path: '/user/refound/detail', name: 'user-refound-detail', component: RefoundDetail, meta: {title: '退货/售后'}}
   ]
 })
 
