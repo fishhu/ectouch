@@ -53,8 +53,8 @@
       }
     },
     components: {
-        Field,
-        Button
+        'mt-field': Field,
+        'mt-button': Button
     }
   }
 </script>
