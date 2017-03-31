@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
 
     <router-link :to="{path:'/user'}" tag="a">
-      登录
+      注册
     </router-link>
   </div>
 </template>
