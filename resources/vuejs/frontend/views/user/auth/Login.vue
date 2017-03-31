@@ -16,12 +16,12 @@
 
         <div class="columns is-mobile pdlrby5">
             <div class="column has-text-left">
-                <router-link :to="{path:'/user'}" tag="a">
+                <router-link :to="{path:'/register'}" tag="a">
                     手机快速注册
                 </router-link>
             </div>
             <div class="column has-text-right">
-                <router-link :to="{path:'/user'}" tag="a">
+                <router-link :to="{path:'/forgot'}" tag="a">
                     忘记密码
                 </router-link>
             </div>
@@ -57,10 +57,6 @@
         Button
     }
   }
-
-
-
-
 </script>
 
 <style>
@@ -79,7 +75,4 @@
     .pdlrby5 {
         padding: 0 1rem;
     }
-
-
-
 </style>

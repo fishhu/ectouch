@@ -2,8 +2,8 @@
   <div class="login">
     <h1>{{ msg }}</h1>
 
-    <router-link :to="{path:'/user'}" tag="a">
-      注册
+    <router-link :to="{path:'/login'}" tag="a">
+      登录
     </router-link>
   </div>
 </template>
