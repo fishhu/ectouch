@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models\Shop;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class GroupGood
+ */
+class GroupGood extends Model
+{
+    protected $table = 'group_goods';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'parent_id',
+        'goods_id',
+        'goods_price',
+        'admin_id'
+    ];
+
+    protected $guarded = [];
+
+        
+}
