@@ -58,22 +58,10 @@ Route::group(['prefix' => 'v2', 'middleware' => 'api'], function () {
     Route::get('ectouch.groupbuy.list', 'GroupBuyController@index'); // 团购活动
     Route::get('ectouch.exchange.list', 'ExchangeController@index'); // 积分兑换
     Route::get('ectouch.topic.list', 'TopicController@index'); // 专题汇
-    Route::get('ectouch.bargain.list', 'BargainController@index'); // 砍价活动
     Route::get('ectouch.article.list', 'ArticleController@index'); // 社区资讯
     Route::get('ectouch.article.get', 'ArticleController@show');
-    Route::get('ectouch.distribution.list', 'DistributionController@index'); // 分销活动
-    Route::get('ectouch.crowdfunding.list', 'CrowdFundingController@index'); // 微众筹
-    Route::get('ectouch.spellgroup.list', 'SpellGroupController@index'); // 拼团
-    Route::get('ectouch.package.list', 'PackageController@index'); // 超值礼包
     Route::get('ectouch.wholesale.list', 'WholesaleController@index'); // 批发活动
     Route::get('ectouch.snatch.list', 'SnatchController@index'); // 夺宝奇兵
-    Route::get('ectouch.checkin.list', 'CheckInController@index'); // 每日签到
-    Route::get('ectouch.sharkitoff.list', 'SharkItOffController@index'); // 摇一摇
-    Route::get('ectouch.payingagent.list', 'PayingAgentController@index'); // 订单代付
-    Route::get('ectouch.eggfrenzy.list', 'EggFrenzyController@index'); // 砸金蛋
-    Route::get('ectouch.scratchcard.list', 'ScratchCardController@index'); // 刮刮卡
-    Route::get('ectouch.bigwheel.list', 'BigWheelController@index'); // 大转盘
-    Route::get('ectouch.coupon.list', 'CouponController@index'); // 领取优惠券
     // 微信
     Route::post('ectouch.wechat.jssdk', 'WechatController@jssdk'); // 微信JSSDK
     // 门店
@@ -92,8 +80,6 @@ Route::group(['prefix' => 'v2', 'middleware' => 'api'], function () {
     Route::get('ectouch.shop.help', 'ShopController@help'); // 商店帮助
     // 工具
     Route::get('ectouch.tool.region', 'MiscController@region'); // 地区
-    Route::get('ectouch.tool.chat', 'MiscController@chat'); // 在线客服
-    Route::post('ectouch.tool.sms', 'MiscController@sms'); // 短信发送
     Route::get('ectouch.search.keywords', 'GoodsController@index'); // 搜索关键词
 });
 
@@ -177,14 +163,4 @@ Route::group(['prefix' => 'v2', 'middleware' => 'auth:api'], function () {
     Route::post('ectouch.order.express', 'OrderController@express'); // 订单快递追踪
     Route::post('ectouch.order.received', 'OrderController@received'); // 订单确认收货
     Route::get('ectouch.orders.get', 'OrderController@index'); // 获取订单列表
-});
-
-// Authorization
-Route::group(['prefix' => 'v2'], function () {
-    Route::post('ectouch.item.add', 'GoodsController@store'); // 新增一个商品
-    Route::post('ectouch.item.update', 'GoodsController@update'); // 更新单个商品信息
-    Route::post('ectouch.item.delete', 'GoodsController@destroy'); // 删除一个商品
-    Route::post('ectouch.item.sku.add', 'ProductController@store'); // 新增商品SKU
-    Route::post('ectouch.item.sku.update', 'ProductController@update'); // 更新单个商品SKU
-    Route::post('ectouch.item.sku.delete', 'ProductController@destroy'); // 删除单个商品SKU
 });
