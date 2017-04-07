@@ -4,6 +4,10 @@ namespace App\Repositories;
 
 use App\Contracts\Repositories\UserRepositoryInterface;
 
+/**
+ * Class UserRepository
+ * @package App\Repositories
+ */
 class UserRepository implements UserRepositoryInterface
 {
     public function all($columns = ['*'])
