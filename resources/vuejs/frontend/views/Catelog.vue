@@ -1,165 +1,101 @@
 <template>
-  <div class="catelog">
-      <div class="con">
-            <div class="category-top blur-div">
-                <header>
-                    <section class="search category-search">
-                        <div class="text-all dis-box j-text-all text-all-back">
-                            <div class="box-flex input-text n-input-text i-search-input">
-                                <router-link :to="{path:'/search'}">
-                                   <div class="j-input-text nav-soso"><i class="iconfont icon-sousuo"></i>商品/店铺搜索</div>
-                                </router-link>
-                            </div>
-                        </div>
-                    </section>
-                </header>
-                <aside>
-                    <div class="menu-left" id="sidebar">
-                        <div class="swiper-scroll swiper-container-vertical swiper-container-free-mode">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide swiper-slide-active">
-                                    <ul>
-                                        <li class="active">家用电器</li>
-                                        <li>手机数码</li>
-                                        <li>电脑办公</li>
-                                        <li>家居家纺</li>
-                                        <li>男装女装</li>
-                                        <li>鞋靴箱包</li>
-                                        <li>个人化妆</li>
-                                        <li>母婴玩具</li>
-                                        <li>图书音像</li>
-                                        <li>休闲运动</li>
-                                        <li>腕表珠宝</li>
-                                        <li>汽车汽配</li>
-                                        <li>食品酒水</li>
-                                        <li>保健器械</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-                <section class="menu-right padding-all">
-                    <!--<ul class="mune-no-img"></ul>-->
-                    <ul class="child_category">
-                        <a href=""><h5>大家电</h5></a>
-                        <!--<ul class="mune-no-img">-->
-                        <ul>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/category1.jpg" alt="平板电视"><span>平板电视</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/category2.jpg" alt="空调"><span>空调</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/category3.jpg" alt="冰箱"><span>冰箱</span></li>
-                        </ul>
-                        <a href=""><h5>生活电器</h5></a>
-                        <!--<ul class="mune-no-img">-->
-                        <ul>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/category4.jpg" alt="电风扇"><span>电风扇</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/category5.jpg" alt="冷风扇"><span>冷风扇</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/category6.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                            <li class="w-3"><a href=""></a><img src="../assets/images/static/no_image.jpg" alt="净化器"><span>净化器</span></li>
-                        </ul>
+    <div class="catelog">
+        <ec-catelog></ec-catelog>
+        <div class="con">
+            <aside class="menu-left">
+                <ul>
+                    <li v-for="item in categoryTop" @click="tabCategory(item.id)" class="active">{{item.name}}</li>
+                </ul>
+            </aside>
+            <div class="menu-right padding-all">
+                <section v-for="item in catelog" v-show="item.isActive">
+                    <a href="">
+                        <h5>{{ item.data.name }}</h5>
+                    </a>
+                    <!--<ul class="mune-no-img">-->
+                    <ul>
+                        <li class="w-3"  v-for="itemChild in item.data.childData">
+                            <a :href="itemChild.id"></a><img :src="itemChild.img" alt="平板电视"><span>平板电视</span>
+                        </li>
                     </ul>
-                    <script id="category" type="text/html">
-                        <a href=""><h5></h5></a>
-                        <!--<ul class="mune-no-img">-->
-                        <ul>
-                            <li class="w-3"><a href=""></a><img src="" alt="" /><span></span></li>
-                        </ul>
-                        <li class="w-3"><a href=""></a><img src="" alt="" /><span></span></li>
-                    </script>
                 </section>
-                <footer class="footer-nav dis-box">
-                  <router-link :to="{path:'/'}" class="box-flex nav-list " tag="a">
-                    <i class="nav-box i-home"></i><span>首页</span>
-                  </router-link>
-                  <router-link :to="{path:'/catelog'}" class="box-flex nav-list active" tag="a">
-                    <i class="nav-box i-cate"></i><span>分类</span>
-                  </router-link>
-                  <router-link :to="{path:'/search'}" class="box-flex nav-list">
-                    <i class="nav-box i-shop"></i><span>搜索</span>
-                  </router-link>
-                  <router-link :to="{path:'/cart'}" class="box-flex position-rel nav-list">
-                    <i class="nav-box i-flow"></i><span>购物车</span>
-                  </router-link>
-                  <router-link :to="{path:'/catelog'}" class="box-flex nav-list">
-                    <i class="nav-box i-user"></i><span>我</span>
-                  </router-link>
-                </footer>
             </div>
-       </div>
-  </div>
+        </div>
+        <ec-footer></ec-footer>
+    </div>
 </template>
 
 <script>
-  import $ from "../assets/js/jquery.min.js";
-  import VueAwesomeSwiper from 'vue-awesome-swiper'
-  export default {
-    name: 'catelog',
-    data () {
-      return {
-        msg: 'Welcome to catelog Page.'
-      }
-    }
-  }
-
-
-
-$(function(){
-    var cat_id = 0;
-   // ajaxAction($("#sidebar li:first"), $("#sidebar li:first").attr("data"), $("#sidebar //li:first").attr("data-id"));
-    $("#sidebar li").click(function(){
-        var li = $(this);
-        var url = $(this).attr("data");
-        var id = $(this).attr("data-id");
-        ajaxAction(li, url, id);
-    });
-    function ajaxAction(obj, url, id){
-        if(cat_id != id){
-            $.ajax({
-                type: 'get',
-                url: url,
-                data: '',
-                cache: true,
-                async: false,
-                dataType: 'json',
-                beforeSend: function(){
-                    $(".loading").show();
-                },
-                success: function(result){
-                    if(typeof(result.code) == 'undefined'){
-                        $(".child_category").animate({
-                            scrollTop: 0
-                        }, 0);
-                        template.config('openTag', '<%');
-                        template.config('closeTag', '%>');
-                        var html = template('category', result);
-                        $(".child_category").html(html);
-                        //$(".child_category ul").html(result);
-                        obj.addClass("active").siblings("li").removeClass("active");
-                    }
-                    else{
-                        d_messages(result.message);
+    import Catelog from '../components/CatelogSearch';
+    import Footer from '../components/Footer.vue';
+    export default {
+        components: {
+            "EcCatelog": Catelog,
+            "EcFooter": Footer
+        },
+        name: 'catelog',
+        data() {
+            return {
+                categoryTop: [{
+                    id: "1",
+                    name: "一级分类1"
+                }, {
+                    id: "2",
+                    name: "一级分类2"
+                }, {
+                    id: "3",
+                    name: "一级分类3"
+                }],
+                catelog: [{
+                    isActive: true,
+                    data: {
+                        "id": "1",
+                        "cid": "1",
+                        "name": "二级分类1",
+                        "url": "",
+                        "img": "",
+                        "childData": [{
+                            "id": "1",
+                            "name": "平板电脑",
+                            "img": "http://test2.ecmoban.com/images/201703/thumb_img/0_thumb_G_1490209495581.jpg",
+                        }, {
+                            "id": "2",
+                            "name": "空调",
+                            "img": "http://test2.ecmoban.com/images/201703/thumb_img/0_thumb_G_1490175614721.jpg",
+                        }]
                     }
                 },
-                complete: function(){
-                    $(".loading").hide();
+                {
+                    isActive: false,
+                    data: {
+                        "id": "2",
+                        "cid": "1",
+                        "name": "二级分类1",
+                        "url": "",
+                        "img": "",
+                        "childData": [{
+                            "id": "1",
+                            "name": "平板电脑",
+                            "img": "http://test2.ecmoban.com/images/201703/thumb_img/0_thumb_G_1490209495581.jpg",
+                        }, {
+                            "id": "2",
+                            "name": "空调",
+                            "img": "http://test2.ecmoban.com/images/201703/thumb_img/0_thumb_G_1490175614721.jpg",
+                        }]
+                    }
                 }
-            });
-            cat_id = id;
+            ]
+        }
+    },
+    // created(){
+        
+    // },
+    methods: {
+        tabCategory(id){
         }
     }
-    $(".swiper-slide.swiper-slide-active li").click(function(){
-       $(this).addClass('active').siblings().removeClass('active')
-    })
-})
 
-
+    }
 </script>
 <style>
 .con, body, html {
@@ -172,7 +108,7 @@ $(function(){
     padding: 1.1rem;
 }
 .search {
-    padding: 0 1rem;
+    /*padding: 0 1rem;*/
     position: relative;
 }
 .category-top .search {
@@ -255,16 +191,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .f-c-s-coupon, .swiper-scroll {
     position: relative;
 }
-.swiper-slide, .swiper-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-.swiper-slide {
-    -webkit-flex-shrink: 0;
-    -ms-flex: 0 0 auto;
-    flex-shrink: 0;
-}
+
 .menu-left, .menu-right {
     position: fixed;
     left: 0;
@@ -279,12 +206,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     left: 0;
     top: 4.6rem;
     bottom: 0;
-}
-.menu-left .swiper-scroll, .menu-right .swiper-scroll {
-    min-height: 100%;
-    max-height: 100%;
-    width: 100%;
-    overflow: hidden;
 }
 .menu-left ul li {
     padding: 1.3rem .8rem;
@@ -335,30 +256,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     bottom: 0;
     left: 8.6rem;
 }
-#loading, .loading {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255,255,255,1);
-    margin-left: -2.5rem;
-    margin-top: -1rem;
-    z-index: 111;
-}
-.loading {
-    left: 11.1rem;
-    top: 6.7rem;
-}
-.loading img {
-    position: absolute;
-    width: 5rem;
-    height: auto;
-    left: 50%;
-    top: 50%;
-    margin-left: -2rem;
-    margin-top: -3rem;
-}
 .menu-right ul {
     overflow: hidden;
     background:#fff;
@@ -408,110 +305,4 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     font-size: 1.3rem;
     color:#777;
 }
-
-
-.footer-nav {
-    background-color: rgba(254,253,252,1);
-    left: 0;
-    right: 0;
-    position: fixed;
-    margin: 0 auto;
-    bottom: 0;
-    z-index: 11;
-    box-shadow: 1px 5px 15px rgba(50,50,50,.3);
-    border-top: 1px solid #f6f6f9;
-    padding: .3rem 0;
-}
-.dis-box {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-box;
-    display: box;
-}
-.footer-nav .nav-list {
-    font-size: 1.1rem;
-    display: block;
-    text-align: center;
-    padding-top: 0;
-    color: #595959;
-}
-.footer-nav .nav-list .nav-box {
-    background: url(../assets/images/static/ec-icon.png) no-repeat;
-    width: 2.7rem;
-    height: 2.7rem;
-    display: block;
-    margin: 0 auto;
-    background-size: 32.1rem;
-}
-.footer-nav .nav-list .i-home {
-    background-position: -.02rem 0;
-}
-.footer-nav .nav-list .i-cate {
-    background-position: -2.701rem 0.2rem;
-}
-.footer-nav .nav-list .i-shop {
-    background-position: -13.9rem 0;
-}
-.footer-nav .nav-list .i-flow {
-    background-position: -5.78rem 0;
-}
-.footer-nav .nav-list .i-user {
-    background-position: -8.38rem 0;
-}
-.footer-nav .nav-list.active .i-cate {
-    background-position: -2.701rem -3rem;
-}
-.footer-nav .nav-list.active .i-home{
-    background-position:0rem -2.7rem;
-}
-.footer-nav .nav-list {
-    font-size: 1.1rem;
-    display: block;
-    text-align: center;
-    padding-top: 0;
-    color: #595959;
-}
-.footer-nav .nav-list.active span{
-  color:#ec5151;
-}
-
-
-.swiper-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-transition-property: -webkit-transform;
-    -moz-transition-property: -moz-transform;
-    -o-transition-property: -o-transform;
-    -ms-transition-property: -ms-transform;
-    transition-property: transform;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-.swiper-container-vertical>.swiper-wrapper {
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-}
-.swiper-container-free-mode>.swiper-wrapper {
-    -webkit-transition-timing-function: ease-out;
-    -moz-transition-timing-function: ease-out;
-    -ms-transition-timing-function: ease-out;
-    -o-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-    margin: 0 auto;
-}
-.s-g-attr-con .swiper-wrapper, .goods-big-service .swiper-wrapper, .s-g-list-con .swiper-wrapper, .goods-show-con .swiper-wrapper, .menu-left .swiper-wrapper {
-    display: block;
-}
 </style>
-
