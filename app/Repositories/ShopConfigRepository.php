@@ -12,6 +12,9 @@ use App\Models\ShopConfig;
 class ShopConfigRepository implements ShopConfigRepositoryInterface
 {
 
+    /**
+     * @return mixed
+     */
     public static function all()
     {
         $arr = cache('shop_config');
@@ -67,7 +70,7 @@ class ShopConfigRepository implements ShopConfigRepositoryInterface
                 $arr['integrate_code'] = 'ecshop';
             }
 
-            cache(['shop_config' => $arr], 60 * 24);
+            cache(['shop_config' => $arr], 60 * 24); // one day
         }
 
         return $arr;
