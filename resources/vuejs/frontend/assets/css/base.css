@@ -95,7 +95,14 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+body{
+    background: #f3f3f3;
+    color: #333;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+}   
 body,
 div,
 dl,

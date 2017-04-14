@@ -5,7 +5,7 @@
                 <a href="" style="color: rgb(255, 255, 255);">
                     <div class="search-left">
                     <span>上海
-                        <i class="iconfont icon-down-arrow"></i></span>
+                        <i class="iconfont icon-xiajiantou"></i></span>
                     </div>
                 </a>
                 <router-link :to="{path:'/search'}" class="search-center">
@@ -133,4 +133,11 @@ header.search-fixed .search-center, header.search-visual .search-center {
     flex: 1;
     font-size: 2.2rem;
 }
+.icon-xiajiantou{
+    display:inline-block;
+    transform: rotate(180deg);
+    -moz-transform:rotate(180deg);	
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+    }
 </style>

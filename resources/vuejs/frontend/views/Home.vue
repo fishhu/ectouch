@@ -8,7 +8,7 @@
         <ec-swipe-item v-for="banner in banners" :key="banner.desc"><img :src="banner.img"></ec-swipe-item>
       </ec-swipe>
     </div>
-    <!--导航--> 
+    <!--导航-->
     <ec-nav></ec-nav>
     <!--资讯-->
     <ec-announ></ec-announ>
@@ -82,10 +82,10 @@
           number: 2,
           imgList: [{
             url: '',
-            img: 'http://test2.ecmoban.com/data/gallery_album/original_img/58db86db98b7d.jpg'
+            img: 'http://test2.ecmoban.com/data/gallery_album/original_img/58da2f7c5c60c.jpg'
           }, {
             url: '',
-            img: 'http://test2.ecmoban.com/data/gallery_album/original_img/58db86dbbd18d.jpg'
+            img: 'http://test2.ecmoban.com/data/gallery_album/original_img/58da2f7c5c60c.jpg'
           }]
         },
         pictureHot: {
@@ -131,17 +131,4 @@ body{font-size:14px !important;}
 .announcement-cont{font-size: 1.5rem;color:#444;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;text-align: left;line-height: 3rem;position: relative;}
 .search.search-fixed{padding:0;}
 .banner1{height:8rem;}
-/*图片列表*/
-/*.picture-tile ul {overflow: hidden;padding: .3rem;}*/
-/*.picture-tile ul li {position: relative;}
-.picture-tile ul li img {width: 100%;}
-.pictures li{float:left;text-align:center;border-right: 1px solid #f0f3f6;
-    border-bottom: 1px solid #f0f3f6;padding-bottom:0;}
-.picture2 ul,.picture3 ul{width:100%;overflow:hidden;}
-.pictures.picture2 li{width:50%;}
-.pictures.picture3 li{width:33.333%;}
-img {vertical-align: middle;}*/
-/*头部搜索*/
-
-
 </style>

@@ -34,12 +34,6 @@ export default {
     background: #fff;
     border-bottom: 1px solid #f1f1f1;
 }
-.dis-box {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-box;
-    display: box;
-}
 .text-all {
     border-bottom: 1px solid #f6f6f9;
     padding: .6rem 0;
@@ -48,14 +42,6 @@ export default {
 }
 .search .text-all {
     border-bottom: 0;
-}
-.box-flex {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -ms-box-flex: 1;
-    box-flex: 1;
-    display: block;
-    width: 100%;
 }
 .search .input-text {
     border-bottom: 0;

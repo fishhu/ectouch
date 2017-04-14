@@ -15,8 +15,6 @@
     </section>
 </template>
 <script>
-  import { Swipe, SwipeItem } from 'mint-ui';
-
 export default {
   name: 'announcement',
   props:['message'],
@@ -29,10 +27,7 @@ export default {
         ],
     }
   },
-  components: {
-      "EcSwipe": Swipe,
-      "EcSwipeItem": SwipeItem
-  }
+
 }
 </script>
 <style lang="">
