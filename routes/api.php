@@ -360,3 +360,4 @@ Route::group(['prefix' => 'v2', 'middleware' => 'auth:api'], function () {
     Route::post('ectouch.order.received', 'OrderController@received'); // 订单确认收货
     Route::post('ectouch.orders.get', 'OrderController@index'); // 获取订单列表
 });
+*/

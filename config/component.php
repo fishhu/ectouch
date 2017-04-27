@@ -1,14 +1,11 @@
 <?php
 
 return [
-    'console' => [
-        'class' => 'app\modules\console\Module',
+    'admin' => [
+        'class' => 'app\modules\admin\Module',
     ],
     'ecapi' => [
         'class' => 'app\modules\ecapi\Module',
-    ],
-    'apidoc' => [
-        'class' => 'app\modules\apidoc\Module',
     ],
     'wechat' => [
         'class' => 'app\modules\wechat\Module',
