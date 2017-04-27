@@ -47,12 +47,14 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/database.php'),
+        /**
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => $routes,
             'suffix' => '.html'
         ],
+        */
     ],
     'modules' => require(__DIR__ . '/component.php'),
     'params' => $params,

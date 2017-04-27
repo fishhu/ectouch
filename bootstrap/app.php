@@ -30,7 +30,7 @@ defined('CHARSET') or define('CHARSET', 'utf-8');
 |
 */
 
-if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1', '192.168.1.92'])) {
+if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
     defined('YII_DEBUG') or define('YII_DEBUG', false);
     defined('YII_ENV') or define('YII_ENV', 'prod');
 } else {

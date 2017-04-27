@@ -14,7 +14,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.6.4",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
         "overtrue/pinyin": "~3.0",
         "overtrue/wechat": "^3.2",
         "phpoffice/phpexcel": "^1.8",
@@ -36,7 +36,11 @@
         "codeception/specify": "~0.4.3"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -55,10 +59,6 @@
             "generateCookieValidationKey": [
                 "config/web.php"
             ]
-        },
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
         }
     }
 }
