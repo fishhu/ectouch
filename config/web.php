@@ -22,9 +22,18 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'admin' => [
+            'class' => 'yii\web\User',
+            'identityClass' => 'app\models\AdminUser',
+            'enableAutoLogin' => true,
+            'loginUrl' => ['admin/login/index'],
+            'identityCookie' => ['name' => '_ectouch_admin_identity', 'httpOnly' => true]
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['user/login/index'],
+            'identityCookie' => ['name' => '_ectouch_identity', 'httpOnly' => true]
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
