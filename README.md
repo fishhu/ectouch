@@ -1,3 +1,4 @@
+add a instruction
 # ECTouch 产品使用说明
 
 
